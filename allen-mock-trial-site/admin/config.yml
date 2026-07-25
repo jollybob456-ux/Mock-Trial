@@ -1,0 +1,46 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where the CMS is allowed to write files. Restricting this to /data
+# means logged-in editors can only ever change the announcement banner
+# and the events list — nothing else on the site.
+publish_mode: simple
+media_folder: "" # no image uploads needed for this site
+public_folder: ""
+
+collections:
+  - name: "settings"
+    label: "Homepage & Schedule"
+    files:
+      - file: "data/announcement.json"
+        label: "Homepage Announcement Banner"
+        name: "announcement"
+        description: "Controls the red banner at the top of the homepage."
+        fields:
+          - { label: "Show banner on homepage?", name: "show", widget: "boolean", default: true }
+          - { label: "Small label (e.g. 'Announcement')", name: "label", widget: "string", default: "Announcement" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Message", name: "message", widget: "text", required: false }
+          - { label: "Button text (optional)", name: "linkText", widget: "string", required: false }
+          - { label: "Button link (optional, e.g. /#join)", name: "linkHref", widget: "string", required: false }
+
+      - file: "data/events.json"
+        label: "Upcoming Events (Schedule Page)"
+        name: "events"
+        description: "Add, remove, or edit events shown on the Schedule page."
+        fields:
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            summary: "{{title}} — {{day}} {{month}}"
+            fields:
+              - { label: "Day (e.g. 14 or TBD)", name: "day", widget: "string" }
+              - { label: "Month / Year (e.g. Sep 2026)", name: "month", widget: "string" }
+              - { label: "Event Title", name: "title", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["pending", "confirmed"]
+                default: "pending"

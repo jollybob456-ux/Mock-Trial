@@ -1,0 +1,7 @@
+{
+  "events": [
+    { "day": "TBD", "month": "2026", "title": "Tournament", "location": "Location & date TBA", "status": "pending" },
+    { "day": "TBD", "month": "2026", "title": "Competition #1", "location": "Location & date TBA", "status": "pending" },
+    { "day": "TBD", "month": "2027", "title": "Competition #2", "location": "Location & date TBA", "status": "pending" }
+  ]
+}
