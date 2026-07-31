@@ -2,7 +2,7 @@ backend:
   name: github
   repo: jollybob456-ux/Mock-Trial
   branch: main
-  base_url: https://mock-trial-oauth.jollybob456-ux.workers.dev
+  base_url: https://mock-trial-oauth.jollybob456.workers.dev
   auth_endpoint: auth
 
 # Where the CMS is allowed to write files. Restricting this to /data
