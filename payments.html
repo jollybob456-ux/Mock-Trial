@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Schedule — Y&amp;G Booster Club</title>
+<title>Payments — Y&amp;G Booster Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,10 +25,10 @@
     </a>
     <nav class="links" id="desktopNav">
       <a href="index.html#about">About</a>
-      <a href="schedule.html" style="color:var(--red);">Schedule</a>
+      <a href="schedule.html">Schedule</a>
       <a href="news.html">News</a>
       <a href="resources.html">Resources</a>
-      <a href="payments.html">Payments</a>
+      <a href="payments.html" style="color:var(--red);">Payments</a>
       <a href="index.html#gallery">Gallery</a>
       <a href="students.html">Students</a>
       <div class="nav-item">
@@ -60,29 +60,62 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Home</a> / Schedule</div>
-    <div class="eyebrow red">SCHEDULE</div>
-    <h1>Practice weekly. <em class="accent">Compete seasonally.</em></h1>
-    <p>Standing practices happen every Monday and Thursday. The three soonest events on the calendar are shown below automatically — or download the full year calendar for every date.</p>
+    <div class="breadcrumb"><a href="index.html">Home</a> / Payments</div>
+    <div class="eyebrow red">PAYMENTS &amp; SUPPORT</div>
+    <h1>Fund the <em class="accent">fight.</em></h1>
+    <p>Membership dues, tournament fees, and donations keep the club running. Payment links and amounts will be updated here as they're finalized.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap" style="padding:60px 0;">
-    <div class="schedule-wrap reveal">
-      <div class="practice-panel">
-        <div class="eyebrow">Standing Practice</div>
-        <h3>Mon &amp; Thurs</h3>
-        <div class="practice-row"><span class="k">Time</span><span class="v">4:15 – 5:00 PM</span></div>
-        <div class="practice-row"><span class="k">Location</span><span class="v">Upper Library, Allen HS</span></div>
-        <div class="practice-row"><span class="k">Who</span><span class="v">All members</span></div>
-        <div class="practice-row"><span class="k">Advisors</span><span class="v">Ms. Holloway &amp; Ms. Barretto</span></div>
-        <div class="practice-row"><span class="k">Note</span><span class="v" style="font-weight:400;font-size:.85rem;">Scrimmages replace regular practice Oct–Feb, until 6:00 PM. Room may shift to F117 later in the season.</span></div>
+    <div class="pay-grid reveal">
+      <div class="pay-card">
+        <div class="pay-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></div>
+        <h3>Club Dues</h3>
+        <div class="price">Amount TBD</div>
+        <p>Annual membership fee for the season. Details and payment link will be posted once finalized.</p>
+        <button class="btn btn-outline" onclick="alert('Payment link coming soon — check back or contact an officer.')">Pay Dues</button>
       </div>
-      <div class="events-panel">
-        <h3>Upcoming Events</h3>
-        <div id="eventsList"><p style="color:var(--gray);font-size:.9rem;">Loading events…</p></div>
-        <div id="calendarDownload" style="margin-top:20px;"></div>
+      <div class="pay-card">
+        <div class="pay-ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
+        <h3>Tournament Fees</h3>
+        <div class="price">Per event · Amount TBD</div>
+        <p>Entry fee for each competition. Paid individually per event. Payment link will be posted when available.</p>
+        <button class="btn btn-outline" onclick="alert('Payment link coming soon — check back or contact an officer.')">Pay Tournament Fee</button>
+      </div>
+      <div class="pay-card">
+        <div class="pay-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Donate</h3>
+        <div class="price">Any amount</div>
+        <p>Support the club directly. Donations help cover club expenses and support members who need financial assistance.</p>
+        <button class="btn btn-outline" onclick="alert('Donation link coming soon — check back or contact an officer.')">Make a Donation</button>
+      </div>
+    </div>
+
+    <div class="sponsor-tiers reveal">
+      <div class="sponsor-tiers-head">
+        <h3>Sponsor the club</h3>
+        <a href="mailto:cary@YAGOFALLEN.com?subject=Sponsorship%20Inquiry%20%E2%80%94%20Allen%20Mock%20Trial" class="btn btn-red">Become a Sponsor</a>
+      </div>
+      <p style="color:var(--gray);font-size:.92rem;line-height:1.6;margin-bottom:20px;max-width:600px;">Local businesses and families can sponsor the club. Sponsorship funds go directly toward competition fees, materials, and club operations. Email <a href="mailto:cary@YAGOFALLEN.com" style="color:var(--red);text-decoration:underline;">cary@YAGOFALLEN.com</a> to get started.</p>
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div class="tier-top"><h4>Gavel</h4><span class="amt">$2,500+</span></div>
+          <ul><li>Logo on team apparel</li><li>Top placement on website</li><li>Named workshop series</li><li>Season banner</li></ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-top"><h4>Jury</h4><span class="amt">$1,000</span></div>
+          <ul><li>Logo on site &amp; programs</li><li>Recognition at all competitions</li><li>Invite to showcase event</li></ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-top"><h4>Bench</h4><span class="amt">$500</span></div>
+          <ul><li>Name on site &amp; programs</li><li>Recognition at showcase event</li></ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-top"><h4>Chambers</h4><span class="amt">$250</span></div>
+          <ul><li>Name listed on site</li><li>Thank-you letter</li></ul>
+        </div>
       </div>
     </div>
   </div>
@@ -127,7 +160,7 @@
 </footer>
 
 <button class="btt" id="bttBtn" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-<!-- Events are edited via the admin dashboard at /admin — see data/events.json -->
+
 <script src="main.js"></script>
 </body>
 </html>
