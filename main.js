@@ -78,33 +78,102 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ---- Upcoming events (schedule page only) ----
   // Content lives in /data/events.json, edited via the admin dashboard.
+  // Automatically shows only the 3 soonest events from today's date —
+  // no need to manually reorder or delete past ones (though deleting
+  // old entries keeps the admin list tidy).
   var eventsList = document.getElementById('eventsList');
   if (eventsList) {
     fetch('/data/events.json')
       .then(function (r) { return r.json(); })
       .then(function (d) { renderEvents(d.events || []); })
       .catch(function () {
-        if (window.upcomingEvents) renderEvents(window.upcomingEvents);
-        else eventsList.innerHTML = '<p style="color:var(--gray);font-size:.9rem;">Unable to load events right now.</p>';
+        eventsList.innerHTML = '<p style="color:var(--gray);font-size:.9rem;">Unable to load events right now.</p>';
       });
   }
+  var MONTH_ABBR = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   function renderEvents(events) {
     if (!eventsList) return;
-    if (!events || events.length === 0) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    var upcoming = (events || [])
+      .filter(function (ev) { return ev.date; })
+      .map(function (ev) {
+        var parts = ev.date.split('-').map(Number);
+        var d = new Date(parts[0], parts[1] - 1, parts[2]);
+        return Object.assign({}, ev, { _d: d });
+      })
+      .filter(function (ev) { return ev._d >= today; })
+      .sort(function (a, b) { return a._d - b._d; })
+      .slice(0, 3);
+
+    if (upcoming.length === 0) {
       eventsList.innerHTML = '<p style="color:var(--gray);font-size:.9rem;padding:20px 0;">No upcoming events posted right now — check back soon.</p>';
       return;
     }
-    eventsList.innerHTML = events.map(function (ev) {
+    eventsList.innerHTML = upcoming.map(function (ev) {
       var statusClass = ev.status === 'confirmed' ? 'confirmed' : 'pending';
       var statusLabel = ev.status === 'confirmed' ? 'Confirmed' : 'Pending';
+      var day = ev._d.getDate();
+      var month = MONTH_ABBR[ev._d.getMonth()];
       return (
         '<div class="event-row">' +
-          '<div class="event-date">' + ev.day + '<span class="mo">' + ev.month + '</span></div>' +
+          '<div class="event-date">' + day + '<span class="mo">' + month + '</span></div>' +
           '<div><div class="event-name">' + ev.title + '</div><div class="event-loc">' + ev.location + '</div></div>' +
           '<div class="status-pill ' + statusClass + '">' + statusLabel + '</div>' +
         '</div>'
       );
     }).join('');
+  }
+
+  // ---- Full calendar PDF download (schedule page only) ----
+  var calendarSlot = document.getElementById('calendarDownload');
+  if (calendarSlot) {
+    fetch('/data/calendar.json')
+      .then(function (r) { return r.json(); })
+      .then(function (c) {
+        if (!c || !c.file) { calendarSlot.style.display = 'none'; return; }
+        calendarSlot.innerHTML =
+          '<a class="btn btn-outline" href="' + c.file + '" target="_blank" rel="noopener">' +
+            '<svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg> ' +
+            (c.label || 'Full Calendar') +
+          '</a>';
+      })
+      .catch(function () { calendarSlot.style.display = 'none'; });
+  }
+
+  // ---- Homepage flyer (uploaded via admin panel) ----
+  // Content lives in /data/flyer.json. If show=true and a file is set,
+  // it replaces the default illustration in the dark box on the homepage.
+  var courthouseBox = document.getElementById('courthouseBox');
+  if (courthouseBox) {
+    fetch('/data/flyer.json')
+      .then(function (r) { return r.json(); })
+      .then(function (f) { renderFlyer(f); })
+      .catch(function () { /* fall back silently to default illustration */ });
+  }
+  function renderFlyer(f) {
+    if (!courthouseBox || !f || !f.show || !f.file) return;
+    var isPdf = /\.pdf($|\?)/i.test(f.file);
+    var captionHtml = f.caption ? esc(f.caption) : '';
+    if (isPdf) {
+      courthouseBox.innerHTML =
+        '<div class="flyer-pdf-card">' +
+          '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>' +
+          '<div class="fp-title">' + (captionHtml || 'Flyer') + '</div>' +
+          (captionHtml ? '' : '<div class="fp-caption">Tap below to view the full flyer.</div>') +
+          '<a class="btn btn-outline" style="border-color:#fff;color:#fff;" href="' + f.file + '" target="_blank" rel="noopener">View PDF</a>' +
+        '</div>';
+    } else {
+      courthouseBox.innerHTML =
+        '<img class="flyer-image" src="' + f.file + '" alt="' + (captionHtml || 'Club flyer') + '">' +
+        (captionHtml ? '<div class="flyer-caption">' + captionHtml + '</div>' : '');
+    }
+  }
+  function esc(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
   }
 
   // ---- Join form validation (only runs if #joinForm exists on the page) ----

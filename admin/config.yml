@@ -5,12 +5,13 @@ backend:
   base_url: https://mock-trial-oauth.jollybob456.workers.dev
   auth_endpoint: auth
 
-# Where the CMS is allowed to write files. Restricting this to /data
-# means logged-in editors can only ever change the announcement banner
-# and the events list — nothing else on the site.
+# Where the CMS is allowed to write files. Keeping this scoped to
+# /data and /images/uploads means logged-in editors can only ever
+# change the announcement banner, the events list, and the homepage
+# flyer — nothing else on the site.
 publish_mode: simple
-media_folder: "" # no image uploads needed for this site
-public_folder: ""
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "settings"
@@ -31,19 +32,35 @@ collections:
       - file: "data/events.json"
         label: "Upcoming Events (Schedule Page)"
         name: "events"
-        description: "Add, remove, or edit events shown on the Schedule page."
+        description: "The three soonest events (by date) automatically show on the Schedule page — no need to reorder or remove past ones manually, though deleting old entries keeps this list tidy."
         fields:
           - label: "Events"
             name: "events"
             widget: "list"
-            summary: "{{title}} — {{day}} {{month}}"
+            summary: "{{title}} — {{fields.date}}"
             fields:
-              - { label: "Day (e.g. 14 or TBD)", name: "day", widget: "string" }
-              - { label: "Month / Year (e.g. Sep 2026)", name: "month", widget: "string" }
+              - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
               - { label: "Event Title", name: "title", widget: "string" }
-              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Location / Time", name: "location", widget: "string" }
               - label: "Status"
                 name: "status"
                 widget: "select"
                 options: ["pending", "confirmed"]
-                default: "pending"
+                default: "confirmed"
+
+      - file: "data/calendar.json"
+        label: "Full Year Calendar (PDF)"
+        name: "calendar"
+        description: "The downloadable full calendar PDF linked on the Schedule page."
+        fields:
+          - { label: "Calendar file (PDF)", name: "file", widget: "file", required: false }
+          - { label: "Link label", name: "label", widget: "string", default: "Full Year Calendar" }
+
+      - file: "data/flyer.json"
+        label: "Homepage Flyer / Poster"
+        name: "flyer"
+        description: "Upload an image or PDF flyer to display in the dark box on the homepage. Leave 'Show' off to hide it and show the default illustration instead."
+        fields:
+          - { label: "Show flyer on homepage?", name: "show", widget: "boolean", default: false }
+          - { label: "Flyer file (image or PDF)", name: "file", widget: "file", required: false }
+          - { label: "Caption (optional, shown under the flyer)", name: "caption", widget: "string", required: false }
