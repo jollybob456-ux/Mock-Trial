@@ -41,6 +41,38 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
+  // ---- Uploaded photos in the homepage gallery ----
+  var gallery = document.querySelector('#gallery .gallery-grid');
+  if (gallery) {
+    var uploadedPhotos = [
+      { src: 'images/ChatGPT%20Image%20Nov%202,%202026,%2003_05_59%20PM.png', alt: 'Uploaded Mock Trial photo 1' },
+      { src: 'images/ChatGPT%20Image%20Nov%202,%202026,%2003_06_17%20PM.png', alt: 'Uploaded Mock Trial photo 2' },
+      { src: 'images/ChatGPT%20Image%20Nov%202,%202026,%2003_06_25%20PM.png', alt: 'Uploaded Mock Trial photo 3' },
+      { src: 'images/ChatGPT%20Image%20Nov%202,%202026,%2003_06_38%20PM.png', alt: 'Uploaded Mock Trial photo 4' },
+      { src: 'images/ChatGPT%20Image%20Nov%202,%202026,%2003_06_47%20PM.png', alt: 'Uploaded Mock Trial photo 5' }
+    ];
+    var tiles = gallery.querySelectorAll('.gallery-tile');
+    uploadedPhotos.forEach(function (photo, index) {
+      var tile = tiles[index];
+      if (!tile) return;
+      tile.replaceChildren();
+      var link = document.createElement('a');
+      link.href = photo.src;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.setAttribute('aria-label', 'Open ' + photo.alt + ' full size');
+      link.style.cssText = 'position:absolute;inset:0;display:block;';
+      var image = document.createElement('img');
+      image.src = photo.src;
+      image.alt = photo.alt;
+      image.loading = 'lazy';
+      image.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+      link.appendChild(image);
+      tile.appendChild(link);
+    });
+    Array.prototype.slice.call(tiles, uploadedPhotos.length).forEach(function (tile) { tile.remove(); });
+  }
+
   // ---- Back to top ----
   var btt = document.getElementById('bttBtn');
   if (btt) {
