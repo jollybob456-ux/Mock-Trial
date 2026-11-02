@@ -88,6 +88,129 @@
   </div>
 </section>
 
+  
+<!-- DISTRICT COMPETITION SCRIMMAGE SCHEDULE -->
+<section id="district-scrimmages" style="padding:60px 0;">
+  <div class="wrap">
+    <div class="eyebrow red">DISTRICT COMPETITION</div>
+    <h2 style="margin:12px 0 16px;">
+      District Competition <em class="accent">Scrimmage Schedule</em>
+    </h2>
+    <p style="margin-bottom:24px;color:var(--gray);">
+      Scrimmage assignments for district competition preparation.
+      October 5 – November 6. Scroll horizontally to view all teams.
+    </p>
+
+    <div style="overflow-x:auto;border-radius:10px;border:1px solid #ddd;">
+      <table id="district-table" style="
+        width:100%;
+        min-width:1450px;
+        border-collapse:collapse;
+        font-family:Inter,sans-serif;
+        font-size:13px;
+        text-align:center;">
+        <thead>
+          <tr style="background:#222;color:white;">
+            <th>Date</th>
+            <th>Scrimmage 1 Plaintiff</th>
+            <th>Scrimmage 1 Defense</th>
+            <th>Scrimmage 2 Plaintiff</th>
+            <th>Scrimmage 2 Defense</th>
+            <th>Scrim 3 Pros</th>
+            <th>Scrim 3 Defense</th>
+            <th>Scrim 4 Pros</th>
+            <th>Scrim 4 Defense</th>
+            <th>Judges</th>
+          </tr>
+        </thead>
+        <tbody id="district-rows"></tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;margin-top:12px;color:var(--gray);">
+      Blank assignments indicate no team scheduled.
+      Contact club officers for schedule updates.
+    </p>
+  </div>
+</section>
+
+<style>
+  #district-table th,
+  #district-table td {
+    padding:12px 10px;
+    border:1px solid #ccc;
+    white-space:nowrap;
+  }
+  #district-table td {
+    background:#fff;
+  }
+  #district-table tbody th {
+    background:#f4f4f4;
+    font-weight:700;
+    white-space:nowrap;
+    padding:12px;
+    border:1px solid #ccc;
+  }
+</style>
+
+<script>
+(function () {
+  const teams = {
+    1: {name:"Team 1 (Light Blue)",bg:"#b8e5f5",fg:"#111"},
+    2: {name:"Team 2 (Green)",bg:"#279365",fg:"#fff"},
+    3: {name:"Team 3 (Blue)",bg:"#24569c",fg:"#fff"},
+    4: {name:"Team 4 (Red)",bg:"#ce2929",fg:"#fff"},
+    5: {name:"Team 5 (Pink)",bg:"#f4b4d2",fg:"#111"},
+    6: {name:"Team 6 (Maroon)",bg:"#850000",fg:"#fff"},
+    7: {name:"Team 7 (Yellow)",bg:"#ffe16b",fg:"#111"}
+  };
+
+  // Each row: date, eight team slots, judges
+  const schedule = [
+    ["Oct. 5", 7,1,1,4,null,null,null,null,"Kate, Andrew"],
+    ["Oct. 8", 4,7,6,3,null,null,null,null,"Kate, Aubrey"],
+    ["Oct. 19",2,6,5,1,null,null,null,null,"Aubrey, Priyansi"],
+    ["Oct. 22",3,6,5,7,null,null,null,null,"Kate, Priyansi"],
+    ["Oct. 26",7,6,1,5,4,2,2,3,"Aubrey, Brecken, Andrew, Kate"],
+    ["Oct. 29",3,2,null,null,null,null,null,null,"Brecken"],
+    ["Nov. 2",4,3,5,2,null,null,null,null,"Andrew, Kate"],
+    ["Nov. 3",null,null,6,5,7,3,null,null,"Brecken, Aubrey, Kate"],
+    ["Nov. 4",4,5,6,1,2,4,null,null,"Kate, Brecken"],
+    ["Nov. 5",1,2,null,null,null,null,null,null,""],
+    ["Nov. 6",6,4,null,null,null,null,null,null,"Andrew, Priyansi"]
+  ];
+
+  const tbody = document.getElementById("district-rows");
+
+  schedule.forEach(row => {
+    const tr = document.createElement("tr");
+    const date = document.createElement("th");
+    date.scope = "row";
+    date.textContent = row[0];
+    tr.appendChild(date);
+
+    row.slice(1,9).forEach(number => {
+      const td = document.createElement("td");
+      if (number && teams[number]) {
+        const team = teams[number];
+        td.textContent = team.name;
+        td.style.setProperty("background",team.bg,"important");
+        td.style.setProperty("color",team.fg,"important");
+        td.style.fontWeight = "700";
+      } else {
+        td.textContent = "—";
+      }
+      tr.appendChild(td);
+    });
+
+    const judges = document.createElement("td");
+    judges.textContent = row[9] || "—";
+    tr.appendChild(judges);
+    tbody.appendChild(tr);
+  });
+})();
+</script>
+<!-- END DISTRICT COMPETITION SCHEDULE -->
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
