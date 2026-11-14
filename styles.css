@@ -443,7 +443,7 @@ nav.links{gap:24px;}
 .season-gallery-head .hint{font-size:.8rem;color:var(--gray);}
 
 /* ===== Photo grid (awards + homepage gallery) ===== */
-.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:8px;}
+.photo-grid{display:grid;grid-auto-flow:dense;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:8px;}
 .photo{position:relative;overflow:hidden;background:var(--navy);display:block;}
 .photo.big{grid-column:span 2;grid-row:span 2;}
 .photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .3s;}
