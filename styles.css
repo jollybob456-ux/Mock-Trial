@@ -404,3 +404,94 @@ footer{background:var(--navy);color:#fff;padding:56px 0 26px;}
   .announce-item{grid-template-columns:1fr;gap:8px;}
   .bylaws-doc{padding:30px 24px;}
 }
+
+/* ===== Active nav state ===== */
+nav.links a.active,.nav-drop-toggle.active,.dropdown a.active,.mobile-nav a.active{color:var(--red);}
+nav.links{gap:24px;}
+
+/* ===== Awards page ===== */
+.season-jump{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;}
+.season-jump a{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;padding:8px 14px;border:1px solid var(--line);background:var(--paper);transition:all .15s;}
+.season-jump a:hover{border-color:var(--navy);background:var(--navy);color:#fff;}
+.season{padding:70px 0 80px;scroll-margin-top:80px;}
+.season + .season{border-top:1px solid var(--line);}
+.season-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;padding-bottom:26px;margin-bottom:34px;border-bottom:1px solid var(--line);}
+.season-year{font-size:clamp(2.8rem,6vw,4.6rem);line-height:1;margin-top:12px;}
+.season-leaders{text-align:right;}
+.season-leaders .k{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;}
+.season-leaders .v{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:600;}
+.season-leaders .v span{color:var(--red);font-style:italic;font-weight:500;}
+.award-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);}
+.award-card{padding:34px 30px 30px;border-right:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column;}
+.award-card:last-child{border-right:none;}
+.award-card.feature{background:var(--navy);color:#fff;border-right-color:var(--line-dark);}
+.award-level{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:8px;}
+.award-level::before{content:"";width:18px;height:1px;background:currentColor;}
+.award-card.feature .award-level{color:#E8A6AB;}
+.award-big{font-family:'Playfair Display',serif;font-weight:700;font-size:4rem;line-height:1;margin:22px 0 14px;letter-spacing:-.02em;}
+.award-big sup{font-size:.42em;vertical-align:top;position:relative;top:.35em;margin-left:2px;}
+.award-big-word{font-style:italic;font-weight:600;font-size:3.1rem;}
+.award-card h3{font-size:1.3rem;margin-bottom:8px;}
+.award-card p{font-size:.9rem;line-height:1.6;color:var(--gray);margin-bottom:22px;flex:1;}
+.award-card.feature p{color:#CBD3E3;}
+.award-tag{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;border-top:1px solid var(--line);padding-top:14px;color:var(--gray);}
+.award-card.feature .award-tag{border-top-color:var(--line-dark);color:#B9C3D6;}
+.award-pending{display:flex;gap:16px;align-items:center;padding:22px 26px;border:1px dashed var(--line);background:var(--cream);}
+.award-pending svg{width:28px;height:28px;flex:none;stroke:var(--gray);fill:none;stroke-width:1.4;}
+.award-pending p{color:var(--gray);font-size:.9rem;line-height:1.6;}
+.season-gallery-head{display:flex;justify-content:space-between;align-items:center;margin:54px 0 16px;gap:12px;flex-wrap:wrap;}
+.season-gallery-head .hint{font-size:.8rem;color:var(--gray);}
+
+/* ===== Photo grid (awards + homepage gallery) ===== */
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:8px;}
+.photo{position:relative;overflow:hidden;background:var(--navy);display:block;}
+.photo.big{grid-column:span 2;grid-row:span 2;}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .3s;}
+.photo:hover img{transform:scale(1.04);}
+.photo .cap{position:absolute;left:0;right:0;bottom:0;padding:28px 16px 14px;background:linear-gradient(0deg,rgba(10,31,68,.85),transparent);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ===== Homepage honors band ===== */
+.honors{background:var(--navy);color:#fff;margin-top:88px;}
+.honors-inner{display:grid;grid-template-columns:1fr 2fr;gap:50px;padding:60px 0;align-items:center;}
+.honors .eyebrow{color:#E8A6AB;}
+.honors .eyebrow::before{background:#E8A6AB;}
+.honors h2{font-size:clamp(1.8rem,2.8vw,2.4rem);margin:14px 0 22px;color:#fff;}
+.honors .btn-outline{border-color:#fff;color:#fff;}
+.honors .btn-outline:hover{background:#fff;color:var(--navy);}
+.honors-stats{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--line-dark);}
+.honors-stat{padding:6px 26px;border-right:1px solid var(--line-dark);}
+.honors-stat:last-child{border-right:none;}
+.honors-stat .n{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;line-height:1;}
+.honors-stat .n sup{font-size:.45em;vertical-align:top;position:relative;top:.3em;}
+.honors-stat .l{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#B9C3D6;margin-top:12px;line-height:1.5;}
+
+/* ===== Lightbox ===== */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(6,16,36,.94);display:none;align-items:center;justify-content:center;padding:60px 70px;}
+.lb.open{display:flex;}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lb button{position:absolute;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;width:46px;height:46px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.lb button:hover{background:rgba(255,255,255,.12);}
+.lb button svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;}
+.lb .lb-close{top:18px;right:18px;}
+.lb .lb-prev{left:14px;top:50%;transform:translateY(-50%);}
+.lb .lb-next{right:14px;top:50%;transform:translateY(-50%);}
+.lb .lb-count{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#B9C3D6;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;}
+
+@media(max-width:1100px){nav.links{gap:18px;font-size:.84rem;}}
+@media(max-width:980px){
+  .award-grid{grid-template-columns:1fr;}
+  .award-card{border-right:none;border-bottom:1px solid var(--line);}
+  .award-card.feature{border-bottom-color:var(--line-dark);}
+  .award-card:last-child{border-bottom:none;}
+  .season-leaders{text-align:left;}
+  .photo-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;}
+  .honors-inner{grid-template-columns:1fr;gap:30px;padding:50px 0;}
+  .honors{margin-top:60px;}
+  .lb{padding:60px 12px;}
+}
+@media(max-width:560px){
+  .honors-stats{grid-template-columns:1fr;border-left:none;}
+  .honors-stat{border-right:none;border-top:1px solid var(--line-dark);padding:18px 0;}
+  .photo-grid{grid-auto-rows:140px;}
+}
+@media(max-width:520px){.nav-cta .btn{display:none;}.brand-text .name{white-space:nowrap;}}
